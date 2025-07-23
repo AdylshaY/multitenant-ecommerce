@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { useDropdownPosition } from './use-dropdown-position';
 import { SubcategoryMenu } from './subcategory-menu';
 import { CustomCategory } from '../types';
+import Link from 'next/link';
 
 interface Props {
   category: CustomCategory;
@@ -49,7 +50,12 @@ export const CategoryDropdown = ({
             isOpen && 'bg-white border-primary'
           )}
         >
-          {category.name}
+          <Link
+            prefetch
+            href={`/${category.slug === 'all' ? '' : category.slug}`}
+          >
+            {category.name}
+          </Link>
         </Button>
 
         {category.subcategories && category.subcategories.length > 0 && (
